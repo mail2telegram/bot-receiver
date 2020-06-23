@@ -1,0 +1,53 @@
+{
+  "name": "mail2telegram/bot",
+  "type": "project",
+  "license": "MIT",
+  "description": "",
+  "authors": [
+    {
+      "name": "Dmitrii Elkin",
+      "email": "de@mqwerty.ru"
+    }
+  ],
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Dev\\": "src-dev"
+    }
+  },
+  "require": {
+    "php": "^7.4",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "ext-pcntl": "*",
+    "ext-zend-opcache": "*",
+    "guzzlehttp/guzzle": "^6.5",
+    "monolog/monolog": "^2.1"
+  },
+  "require-dev": {
+    "codeception/codeception": "^4.1",
+    "codeception/module-asserts": "^1.2",
+    "filp/whoops": "^2.7",
+    "phan/phan": "^3.0",
+    "phpmd/phpmd": "^2.8",
+    "roave/security-advisories": "dev-master",
+    "squizlabs/php_codesniffer": "^3.5"
+  },
+  "scripts": {
+    "test": "codecept run --debug",
+    "test:cover": "codecept run unit --coverage --coverage-html",
+    "test:unit": "codecept run unit --debug",
+    "stan:md": "phpmd ./src ansi ./phpmd.xml",
+    "stan:phan": "phan --color --progress-bar",
+    "cs:check": "phpcs ./src --standard=PSR12",
+    "cs:fix": "phpcbf ./src --standard=PSR12"
+  }
+}

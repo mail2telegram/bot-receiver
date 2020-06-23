@@ -1,0 +1,6 @@
+actor: BaseTester
+modules:
+  enabled:
+    - Asserts
+    - \Helper\Base
+  step_decorators: ~
