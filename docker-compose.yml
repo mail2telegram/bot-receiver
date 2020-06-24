@@ -1,9 +1,9 @@
 version: '3'
 services:
-  m2t_bot:
-    container_name: m2t_bot
+  m2t_botr:
+    container_name: m2t_botr
     build: .
-    image: mail2telegram/bot:dev
+    image: mail2telegram/bot-receiver:dev
     restart: always
     entrypoint: ["tail", "-f", "/dev/null"]
     volumes:
