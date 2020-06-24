@@ -1,11 +1,11 @@
 version: '3'
 services:
-  m2tb:
-    container_name: m2tb
+  m2t_bot:
+    container_name: m2t_bot
     build: .
     image: mail2telegram/bot:dev
     restart: always
-#    entrypoint: ['php', 'index.php']
+    entrypoint: ["tail", "-f", "/dev/null"]
     volumes:
       - .:/app
       - ./docker/app/conf/php/dev.ini:/usr/local/etc/php/conf.d/dev.ini
@@ -14,3 +14,7 @@ services:
       - PHAN_DISABLE_XDEBUG_WARN=1
       - PHAN_ALLOW_XDEBUG=0
       - PHP_IDE_CONFIG=serverName=app
+networks:
+  default:
+    external:
+      name: m2t

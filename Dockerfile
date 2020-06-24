@@ -1,11 +1,11 @@
 FROM php:7.4-cli-alpine
 
-RUN addgroup -g 3000 app && adduser --uid 3000 -G app -D app && mkdir /socks && chown app:app /socks && chmod 0775 /socks
+RUN addgroup -g 3000 app && adduser --uid 3000 -G app -D app
 
 ARG DEPS="git"
 RUN apk add --no-cache $DEPS
 
-ARG DEPS_PHP="xdebug ast opcache pcntl"
+ARG DEPS_PHP="xdebug ast opcache pcntl redis amqp"
 ADD https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions /usr/local/bin/
 RUN chmod u+x /usr/local/bin/install-php-extensions && sync && install-php-extensions $DEPS_PHP \
     && rm /usr/local/etc/php/conf.d/*xdebug.ini \
@@ -29,5 +29,5 @@ COPY --chown=app:app . .
 RUN find /app -type d -print0 | xargs -t -0 -P 4 chmod 0755 > /dev/null 2>&1 \
     && find /app -type f -print0 | xargs -t -0 -P 4 chmod 0644 > /dev/null 2>&1
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT ["php", "index.php"]
 CMD []

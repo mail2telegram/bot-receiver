@@ -30,7 +30,9 @@
     "ext-pcntl": "*",
     "ext-zend-opcache": "*",
     "guzzlehttp/guzzle": "^6.5",
-    "monolog/monolog": "^2.1"
+    "monolog/monolog": "^2.1",
+    "ext-redis": "*",
+    "ext-amqp": "*"
   },
   "require-dev": {
     "codeception/codeception": "^4.1",

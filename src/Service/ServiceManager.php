@@ -2,10 +2,15 @@
 
 namespace App\Service;
 
+use AMQPChannel;
+use AMQPConnection;
+use AMQPExchange;
+use App\App;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use Redis;
 use ReflectionClass;
 
 final class ServiceManager implements ContainerInterface
@@ -21,9 +26,31 @@ final class ServiceManager implements ContainerInterface
                 'shared' => [
                     LoggerInterface::class,
                 ],
+                Redis::class => [RedisService::class, 'it'],
                 LoggerInterface::class => static function () {
                     /** @phan-suppress-next-line PhanTypeMismatchArgument */
                     return (new Logger('app'))->pushHandler(new StreamHandler(STDERR, Logger::INFO));
+                },
+                AMQPConnection::class => static function () {
+                    static $connect;
+                    if (null === $connect) {
+                        $config = App::get('amqp');
+                        $connect = (new AMQPConnection(
+                            [
+                                'host' => $config['host'],
+                                'port' => $config['port'],
+                                'login' => $config['user'],
+                                'password' => $config['pwd'],
+                            ]
+                        ));
+                    }
+                    if (!$connect->isConnected()) {
+                        $connect->pconnect();
+                    }
+                    return $connect;
+                },
+                AMQPExchange::class => static function () {
+                    return new AMQPExchange(new AMQPChannel(App::get(AMQPConnection::class)));
                 },
             ],
             require __DIR__ . '/../../config.php',

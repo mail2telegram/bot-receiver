@@ -2,6 +2,7 @@
 
 namespace App;
 
+use AMQPExchange;
 use App\Client\TelegramClient;
 use Psr\Log\LoggerInterface;
 use Throwable;
@@ -9,20 +10,20 @@ use Throwable;
 final class Worker
 {
     private const MEMORY_LIMIT = 134_217_728; // 128MB
-    private const USLEEP = 1_000_000;
+    private const USLEEP = 1_000;
 
     private LoggerInterface $logger;
     private TelegramClient $telegram;
-    private ChatController $controller;
+    private AMQPExchange $exchange;
 
     public function __construct(
         LoggerInterface $logger,
         TelegramClient $telegram,
-        ChatController $controller
+        AMQPExchange $exchange
     ) {
         $this->logger = $logger;
         $this->telegram = $telegram;
-        $this->controller = $controller;
+        $this->exchange = $exchange;
 
         $this->logger->info('Worker started');
         pcntl_signal(SIGTERM, [$this, 'signalHandler']);
@@ -53,9 +54,7 @@ final class Worker
             }
             usleep(self::USLEEP);
             try {
-                $this->logger->info('Worker task started');
                 $this->task();
-                $this->logger->info('Worker task finished');
             } catch (Throwable $e) {
                 $this->logger->error((string) $e);
             }
@@ -63,11 +62,25 @@ final class Worker
         $this->logger->info('Worker finished');
     }
 
+    /**
+     * @throws \AMQPChannelException
+     * @throws \AMQPConnectionException
+     * @throws \AMQPExchangeException
+     * @throws \JsonException
+     */
     private function task(): void
     {
+        $debugEnabled = App::get('env') !== 'prod';
         $updates = $this->telegram->getUpdates();
         foreach ($updates as $update) {
-            $this->controller->handle($update);
+            $payload = json_encode($update, JSON_THROW_ON_ERROR);
+            $this->exchange->publish($payload, App::get('exchange'), AMQP_MANDATORY);
+            if ($debugEnabled) {
+                $this->logger->debug('Update:', $update);
+            }
+        }
+        if ($debugEnabled && !$updates) {
+            $this->logger->debug('No updates');
         }
     }
 }
