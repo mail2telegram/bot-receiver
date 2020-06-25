@@ -9,12 +9,11 @@ use Throwable;
 
 final class Worker
 {
-    private const MEMORY_LIMIT = 134_217_728; // 128MB
-    private const USLEEP = 1_000;
-
     private LoggerInterface $logger;
     private TelegramClient $telegram;
     private AMQPExchange $exchange;
+    private int $memoryLimit;
+    private int $interval;
 
     public function __construct(
         LoggerInterface $logger,
@@ -24,6 +23,8 @@ final class Worker
         $this->logger = $logger;
         $this->telegram = $telegram;
         $this->exchange = $exchange;
+        $this->interval = App::get('workerInterval');
+        $this->memoryLimit = App::get('workerMemoryLimit');
 
         $this->logger->info('Worker started');
         pcntl_signal(SIGTERM, [$this, 'signalHandler']);
@@ -48,11 +49,11 @@ final class Worker
             if (defined('TERMINATED')) {
                 break;
             }
-            if (memory_get_usage(true) >= self::MEMORY_LIMIT) {
+            if (memory_get_usage(true) >= $this->memoryLimit) {
                 $this->logger->warning('Worker out of memory');
                 break;
             }
-            usleep(self::USLEEP);
+            usleep($this->interval);
             try {
                 $this->task();
             } catch (Throwable $e) {
