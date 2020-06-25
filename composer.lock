@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9fb377f3a576d731d0318d125342587",
+    "content-hash": "99a15bfd1c06d6e0282be79caaab8cf0",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -285,6 +285,50 @@
                 }
             ],
             "time": "2020-05-22T08:12:19+00:00"
+        },
+        {
+            "name": "pahanini/monolog-cli-formatter",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pahanini/monolog-cli-formatter.git",
+                "reference": "0230ad2f5f0777b9d30958fe5642a55a32fa620c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pahanini/monolog-cli-formatter/zipball/0230ad2f5f0777b9d30958fe5642a55a32fa620c",
+                "reference": "0230ad2f5f0777b9d30958fe5642a55a32fa620c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "monolog/monolog": "^2.0",
+                "php": ">=7.2"
+            },
+            "type": "formatter",
+            "autoload": {
+                "psr-4": {
+                    "pahanini\\Monolog\\Formatter\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Tetyaev",
+                    "email": "pahanini@gmail.com"
+                }
+            ],
+            "description": "Formats log for console with colors and indents for context",
+            "homepage": "https://github.com/pahanini/monolog-cli-formatter",
+            "keywords": [
+                "formatter",
+                "log",
+                "monolog"
+            ],
+            "time": "2020-06-23T09:13:28+00:00"
         },
         {
             "name": "psr/http-message",
@@ -4989,12 +5033,12 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^7.4",
+        "ext-amqp": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
         "ext-pcntl": "*",
-        "ext-zend-opcache": "*",
         "ext-redis": "*",
-        "ext-amqp": "*"
+        "ext-zend-opcache": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "1.1.0"

@@ -22,7 +22,6 @@ final class ServiceManager implements ContainerInterface
     {
         $this->config = array_merge(
             [
-                'env' => 'prod', // prod | dev
                 'shared' => [
                     LoggerInterface::class,
                 ],

@@ -70,16 +70,13 @@ final class Worker
      */
     private function task(): void
     {
-        $debugEnabled = App::get('env') !== 'prod';
         $updates = $this->telegram->getUpdates();
         foreach ($updates as $update) {
             $payload = json_encode($update, JSON_THROW_ON_ERROR);
             $this->exchange->publish($payload, App::get('exchange'), AMQP_MANDATORY);
-            if ($debugEnabled) {
-                $this->logger->debug('Update:', $update);
-            }
+            $this->logger->debug('Update:', $update);
         }
-        if ($debugEnabled && !$updates) {
+        if (!$updates) {
             $this->logger->debug('No updates');
         }
     }

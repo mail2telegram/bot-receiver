@@ -2,10 +2,10 @@
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use pahanini\Monolog\Formatter\CliFormatter;
 use Psr\Log\LoggerInterface;
 
 return [
-    'env' => 'prod', // prod | dev
     'telegramToken' => 'XXX',
     'telegramLongPollingTimeout' => 2,
     'telegramUpdatesLimit' => 100, // 1-100
@@ -21,7 +21,7 @@ return [
     ],
     LoggerInterface::class => static function () {
         $stream = new StreamHandler(STDERR);
-        //$stream->setFormatter(new \Dev\CliFormatter());
+        $stream->setFormatter(new CliFormatter());
         return (new Logger('app'))->pushHandler($stream);
     },
 ];
