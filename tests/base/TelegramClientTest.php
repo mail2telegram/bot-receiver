@@ -4,8 +4,7 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 
 use M2T\App;
-use App\Client\TelegramClient;
-use App\Storage;
+use M2T\Client\TelegramClient;
 use Codeception\Test\Unit;
 
 class TelegramClientTest extends Unit
@@ -16,7 +15,7 @@ class TelegramClientTest extends Unit
     {
         new App();
 
-        /** @var \App\Client\TelegramClient $client */
+        /** @var TelegramClient $client */
         $client = App::get(TelegramClient::class);
 
         $result = $client->getUpdates();

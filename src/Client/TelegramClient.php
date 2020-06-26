@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Client;
+namespace M2T\Client;
 
 use M2T\App;
 use GuzzleHttp\Client;

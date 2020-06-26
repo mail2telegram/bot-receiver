@@ -1,10 +1,9 @@
 <?php
 
-namespace App;
+namespace M2T;
 
-use M2T\App;
 use AMQPExchange;
-use App\Client\TelegramClient;
+use M2T\Client\TelegramClient;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
