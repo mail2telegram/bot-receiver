@@ -2,7 +2,7 @@
 
 namespace App\Client;
 
-use App\App;
+use M2T\App;
 use GuzzleHttp\Client;
 use Psr\Log\LoggerInterface;
 use Redis;

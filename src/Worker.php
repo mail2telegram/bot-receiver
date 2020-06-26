@@ -2,6 +2,7 @@
 
 namespace App;
 
+use M2T\App;
 use AMQPExchange;
 use App\Client\TelegramClient;
 use Psr\Log\LoggerInterface;

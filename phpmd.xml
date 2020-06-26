@@ -23,8 +23,7 @@
         <properties>
             <property name="exceptions">
                 <value>
-                    \Dev\ErrorHandler,
-                    \App\App,
+                    \M2T\App,
                 </value>
             </property>
         </properties>

@@ -5,4 +5,4 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 pcntl_async_signals(true);
 
-(new App\App())->run();
+(new M2T\App())->run();

@@ -24,11 +24,6 @@
       "App\\": "src"
     }
   },
-  "autoload-dev": {
-    "psr-4": {
-      "Dev\\": "src-dev"
-    }
-  },
   "require": {
     "php": "^7.4",
     "ext-amqp": "*",
