@@ -1,5 +1,6 @@
 <?php
 
+use App\App;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use pahanini\Monolog\Formatter\CliFormatter;
@@ -21,9 +22,43 @@ return [
         'user' => 'guest',
         'pwd' => 'guest',
     ],
+    'shared' => [
+        LoggerInterface::class,
+    ],
     LoggerInterface::class => static function () {
         $stream = new StreamHandler(STDERR);
         $stream->setFormatter(new CliFormatter());
         return (new Logger('app'))->pushHandler($stream);
+    },
+    Redis::class => static function () {
+        static $connect;
+        if (null === $connect) {
+            $connect = new Redis();
+        }
+        if (!$connect->isConnected() && !$connect->pconnect(App::get('redis')['host'])) {
+            throw new RuntimeException('No Redis connection');
+        }
+        return $connect;
+    },
+    AMQPConnection::class => static function () {
+        static $connect;
+        if (null === $connect) {
+            $config = App::get('amqp');
+            $connect = (new AMQPConnection(
+                [
+                    'host' => $config['host'],
+                    'port' => $config['port'],
+                    'login' => $config['user'],
+                    'password' => $config['pwd'],
+                ]
+            ));
+        }
+        if (!$connect->isConnected()) {
+            $connect->pconnect();
+        }
+        return $connect;
+    },
+    AMQPExchange::class => static function () {
+        return new AMQPExchange(new AMQPChannel(App::get(AMQPConnection::class)));
     },
 ];

@@ -13,6 +13,12 @@
     "optimize-autoloader": true,
     "sort-packages": true
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/mail2telegram/common"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "App\\": "src"
@@ -32,6 +38,7 @@
     "ext-redis": "*",
     "ext-zend-opcache": "*",
     "guzzlehttp/guzzle": "^6.5",
+    "mail2telegram/common": "^1.0",
     "monolog/monolog": "^2.1",
     "pahanini/monolog-cli-formatter": "^1.0"
   },

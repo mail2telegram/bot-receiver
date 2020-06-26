@@ -3,7 +3,7 @@
 namespace App;
 
 use Psr\Container\ContainerInterface;
-use App\Service\ServiceManager;
+use M2T\Service\ServiceManager;
 
 final class App
 {
@@ -22,6 +22,7 @@ final class App
         if (class_exists(\Dev\ErrorHandler::class)) {
             \Dev\ErrorHandler::register();
         }
+        $config = array_merge(require __DIR__ . '/../config.php', $config);
         self::$serviceManager = new ServiceManager($config);
     }
 
