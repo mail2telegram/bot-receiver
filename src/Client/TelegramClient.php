@@ -14,11 +14,18 @@ class TelegramClient
 
     protected LoggerInterface $logger;
     protected Redis $redis;
+    protected Client $client;
 
     public function __construct(LoggerInterface $logger, Redis $redis)
     {
         $this->logger = $logger;
         $this->redis = $redis;
+        $this->client = new Client(
+            [
+                'base_uri' => static::BASE_URL . App::get('telegramToken') . '/',
+                'timeout' => App::get('telegramLongPollingTimeout') + 2.0,
+            ]
+        );
     }
 
     public function getUpdates(): array
@@ -41,15 +48,8 @@ class TelegramClient
 
     protected function execute(string $method, array $data): array
     {
-        $client = new Client(
-            [
-                'base_uri' => static::BASE_URL . App::get('telegramToken') . '/',
-                'timeout' => App::get('telegramLongPollingTimeout') + 2.0,
-            ]
-        );
-
         try {
-            $response = $client->request('POST', $method, $data);
+            $response = $this->client->request('POST', $method, $data);
         } catch (Throwable $e) {
             $this->logger->error('Telegram: ' . $e);
             return [];
