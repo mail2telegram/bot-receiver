@@ -3,4 +3,4 @@ services:
   test:
     build: .
     entrypoint: []
-    command: sh -c "cp config.example.php config.php && composer install --no-interaction --no-progress --no-suggest && composer stan:phan && composer cs:check"
+    command: sh -c "cp config.example.php config.php && composer install --no-interaction --no-progress --no-suggest  && composer cs:check  && composer stan:md && composer stan:phan"

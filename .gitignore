@@ -3,9 +3,8 @@
 /vendor/
 
 # local files
-config.php
-codeception.yml
-/public/upload/**
+/config.php
+/codeception.yml
 
 # keep
 !.gitkeep
