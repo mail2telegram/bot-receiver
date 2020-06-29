@@ -32,7 +32,7 @@
     "ext-pcntl": "*",
     "ext-redis": "*",
     "ext-zend-opcache": "*",
-    "guzzlehttp/guzzle": "^6.5",
+    "guzzlehttp/guzzle": "^7.0",
     "mail2telegram/common": "^1.0",
     "monolog/monolog": "^2.1",
     "pahanini/monolog-cli-formatter": "^1.0"
