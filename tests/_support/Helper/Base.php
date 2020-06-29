@@ -3,6 +3,7 @@
 namespace Helper;
 
 use Codeception\Module;
+use M2T\App;
 
 class Base extends Module
 {
@@ -10,5 +11,6 @@ class Base extends Module
     {
         /** @noinspection PhpIncludeInspection */
         require_once codecept_root_dir() . '/vendor/autoload.php';
+        new App();
     }
 }

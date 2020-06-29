@@ -1,20 +1,20 @@
 <?php
 
-/** @noinspection PhpIllegalPsrClassPathInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 
+namespace Unit;
+
+use UnitTester;
 use M2T\App;
 use M2T\Client\TelegramClient;
 use Codeception\Test\Unit;
 
 class TelegramClientTest extends Unit
 {
-    protected BaseTester $tester;
+    protected UnitTester $tester;
 
     public function testSendMessage(): void
     {
-        new App();
-
         /** @var TelegramClient $client */
         $client = App::get(TelegramClient::class);
 
