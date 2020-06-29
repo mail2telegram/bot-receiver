@@ -211,16 +211,16 @@
         },
         {
             "name": "mail2telegram/common",
-            "version": "v1.0.6",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mail2telegram/common.git",
-                "reference": "279f91a5faa64e7de22ed7d3b17d057e2b3750bf"
+                "reference": "6959230dd76888d0215a921fa17ea5dc8ee5c125"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mail2telegram/common/zipball/279f91a5faa64e7de22ed7d3b17d057e2b3750bf",
-                "reference": "279f91a5faa64e7de22ed7d3b17d057e2b3750bf",
+                "url": "https://api.github.com/repos/mail2telegram/common/zipball/6959230dd76888d0215a921fa17ea5dc8ee5c125",
+                "reference": "6959230dd76888d0215a921fa17ea5dc8ee5c125",
                 "shasum": ""
             },
             "require": {
@@ -249,10 +249,13 @@
                     "codecept run --debug"
                 ],
                 "test:cover": [
-                    "codecept run unit --coverage --coverage-html"
+                    "codecept run --coverage --coverage-html"
+                ],
+                "test:base": [
+                    "codecept run Base --debug"
                 ],
                 "test:unit": [
-                    "codecept run unit --debug"
+                    "codecept run Unit --debug"
                 ],
                 "stan:md": [
                     "phpmd ./src ansi ./phpmd.xml"
@@ -277,10 +280,10 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/mail2telegram/common/tree/v1.0.6",
+                "source": "https://github.com/mail2telegram/common/tree/v1.0.7",
                 "issues": "https://github.com/mail2telegram/common/issues"
             },
-            "time": "2020-06-28T08:28:05+00:00"
+            "time": "2020-06-28T13:50:47+00:00"
         },
         {
             "name": "monolog/monolog",
