@@ -60,6 +60,11 @@ return [
         return $connect;
     },
     AMQPExchange::class => static function () {
-        return new AMQPExchange(new AMQPChannel(App::get(AMQPConnection::class)));
+        $x = new AMQPExchange(new AMQPChannel(App::get(AMQPConnection::class)));
+        $x->setName(App::get('exchange'));
+        $x->setFlags(AMQP_DURABLE);
+        $x->setType('x-consistent-hash');
+        $x->declareExchange();
+        return $x;
     },
 ];

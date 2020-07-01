@@ -211,16 +211,16 @@
         },
         {
             "name": "mail2telegram/common",
-            "version": "v1.0.7",
+            "version": "v1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mail2telegram/common.git",
-                "reference": "6959230dd76888d0215a921fa17ea5dc8ee5c125"
+                "reference": "a7f0c72761447666b3050c74e68393f4700e5aba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mail2telegram/common/zipball/6959230dd76888d0215a921fa17ea5dc8ee5c125",
-                "reference": "6959230dd76888d0215a921fa17ea5dc8ee5c125",
+                "url": "https://api.github.com/repos/mail2telegram/common/zipball/a7f0c72761447666b3050c74e68393f4700e5aba",
+                "reference": "a7f0c72761447666b3050c74e68393f4700e5aba",
                 "shasum": ""
             },
             "require": {
@@ -268,6 +268,12 @@
                 ],
                 "cs:fix": [
                     "phpcbf ./src --standard=PSR12"
+                ],
+                "check": [
+                    "@cs:check",
+                    "@stan:md",
+                    "@stan:phan",
+                    "@test"
                 ]
             },
             "license": [
@@ -280,10 +286,10 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/mail2telegram/common/tree/v1.0.7",
+                "source": "https://github.com/mail2telegram/common/tree/v1.0.8",
                 "issues": "https://github.com/mail2telegram/common/issues"
             },
-            "time": "2020-06-28T13:50:47+00:00"
+            "time": "2020-07-01T08:46:48+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1327,16 +1333,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.10.0",
+            "version": "1.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "5796d127b0c4ff505b77455148ea9d5269d99758"
+                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/5796d127b0c4ff505b77455148ea9d5269d99758",
-                "reference": "5796d127b0c4ff505b77455148ea9d5269d99758",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
+                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
                 "shasum": ""
             },
             "require": {
@@ -1377,7 +1383,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-28T07:02:41+00:00"
+            "time": "2020-06-29T13:22:24+00:00"
         },
         {
             "name": "netresearch/jsonmapper",
@@ -2947,20 +2953,20 @@
         },
         {
             "name": "sebastian/diff",
-            "version": "4.0.1",
+            "version": "4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "3e523c576f29dacecff309f35e4cc5a5c168e78a"
+                "reference": "1e90b4cf905a7d06c420b1d2e9d11a4dc8a13113"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/3e523c576f29dacecff309f35e4cc5a5c168e78a",
-                "reference": "3e523c576f29dacecff309f35e4cc5a5c168e78a",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/1e90b4cf905a7d06c420b1d2e9d11a4dc8a13113",
+                "reference": "1e90b4cf905a7d06c420b1d2e9d11a4dc8a13113",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.3"
+                "php": "^7.3 || ^8.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.0",
@@ -3005,7 +3011,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-05-08T05:01:12+00:00"
+            "time": "2020-06-30T04:46:02+00:00"
         },
         {
             "name": "sebastian/environment",
