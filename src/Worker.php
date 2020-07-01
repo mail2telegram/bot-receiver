@@ -5,6 +5,7 @@ namespace M2T;
 use AMQPExchange;
 use M2T\Client\TelegramClient;
 use Psr\Log\LoggerInterface;
+use Redis;
 use Throwable;
 
 final class Worker
@@ -12,17 +13,20 @@ final class Worker
     private LoggerInterface $logger;
     private TelegramClient $telegram;
     private AMQPExchange $exchange;
+    private Redis $redis;
     private int $memoryLimit;
     private int $interval;
 
     public function __construct(
         LoggerInterface $logger,
         TelegramClient $telegram,
-        AMQPExchange $exchange
+        AMQPExchange $exchange,
+        Redis $redis
     ) {
         $this->logger = $logger;
         $this->telegram = $telegram;
         $this->exchange = $exchange;
+        $this->redis = $redis;
         $this->interval = App::get('workerInterval');
         $this->memoryLimit = App::get('workerMemoryLimit');
 
@@ -71,14 +75,18 @@ final class Worker
      */
     private function task(): void
     {
-        $updates = $this->telegram->getUpdates();
+        $offset = (int) $this->redis->get('telegramUpdatesOffset') ?: 0;
+        $updates = $this->telegram->getUpdates($offset);
+        if ($updates) {
+            $offset = end($updates)['update_id'] + 1;
+            $this->redis->set('telegramUpdatesOffset', $offset);
+        } else {
+            $this->logger->debug('No updates');
+        }
         foreach ($updates as $update) {
             $payload = json_encode($update, JSON_THROW_ON_ERROR);
             $this->exchange->publish($payload, App::get('exchange'), AMQP_MANDATORY);
             $this->logger->debug('Update:', $update);
-        }
-        if (!$updates) {
-            $this->logger->debug('No updates');
         }
     }
 }

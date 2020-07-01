@@ -2,10 +2,10 @@
 
 namespace M2T\Client;
 
-use M2T\App;
 use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
+use M2T\App;
 use Psr\Log\LoggerInterface;
-use Redis;
 use Throwable;
 
 class TelegramClient
@@ -13,37 +13,31 @@ class TelegramClient
     protected const BASE_URL = 'https://api.telegram.org/bot';
 
     protected LoggerInterface $logger;
-    protected Redis $redis;
-    protected Client $client;
+    protected ClientInterface $client;
 
-    public function __construct(LoggerInterface $logger, Redis $redis)
+    public function __construct(LoggerInterface $logger, ?ClientInterface $client = null)
     {
         $this->logger = $logger;
-        $this->redis = $redis;
-        $this->client = new Client(
-            [
-                'base_uri' => static::BASE_URL . (getenv('TELEGRAM_TOKEN') ?: App::get('telegramToken')) . '/',
-                'timeout' => App::get('telegramLongPollingTimeout') + 2.0,
-            ]
-        );
+        $this->client = $client ?? new Client(
+                [
+                    'base_uri' => static::BASE_URL . (getenv('TELEGRAM_TOKEN') ?: App::get('telegramToken')) . '/',
+                    'timeout' => App::get('telegramLongPollingTimeout') + App::get('telegramTimeout'),
+                ]
+            );
     }
 
-    public function getUpdates(): array
+    public function getUpdates(int $offset, int $limit = 0): array
     {
-        $offset = (int) $this->redis->get('telegramUpdatesOffset') ?: 0;
-        $data = [
-            'form_params' => [
-                'offset' => $offset,
-                'limit' => App::get('telegramUpdatesLimit'),
-                'timeout' => App::get('telegramLongPollingTimeout'),
-            ],
-        ];
-        $updates = $this->execute('getUpdates', $data);
-        if ($updates) {
-            $offset = end($updates)['update_id'] + 1;
-            $this->redis->set('telegramUpdatesOffset', $offset);
-        }
-        return $updates;
+        return $this->execute(
+            'getUpdates',
+            [
+                'form_params' => [
+                    'offset' => $offset,
+                    'limit' => $limit ?: App::get('telegramUpdatesLimit'),
+                    'timeout' => App::get('telegramLongPollingTimeout'),
+                ],
+            ]
+        );
     }
 
     protected function execute(string $method, array $data): array

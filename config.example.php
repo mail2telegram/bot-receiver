@@ -10,6 +10,7 @@ return [
     'workerMemoryLimit' => 134_217_728, // 128MB
     'workerInterval' => 1_000, // micro seconds
     'telegramToken' => 'XXX',
+    'telegramTimeout' => 5.0,
     'telegramLongPollingTimeout' => 2,
     'telegramUpdatesLimit' => 100, // 1-100
     'exchange' => 'telegram_update',
