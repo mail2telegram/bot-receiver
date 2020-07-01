@@ -53,6 +53,12 @@
     "stan:md": "phpmd ./src ansi ./phpmd.xml",
     "stan:phan": "phan --color --progress-bar",
     "cs:check": "phpcs ./src --standard=PSR12",
-    "cs:fix": "phpcbf ./src --standard=PSR12"
+    "cs:fix": "phpcbf ./src --standard=PSR12",
+    "check": [
+      "@cs:check",
+      "@stan:md",
+      "@stan:phan",
+      "@test"
+    ]
   }
 }

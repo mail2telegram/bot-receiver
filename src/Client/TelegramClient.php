@@ -18,7 +18,8 @@ class TelegramClient
     public function __construct(LoggerInterface $logger, ?ClientInterface $client = null)
     {
         $this->logger = $logger;
-        $this->client = $client ?? new Client(
+        $this->client = $client
+            ?? new Client(
                 [
                     'base_uri' => static::BASE_URL . (getenv('TELEGRAM_TOKEN') ?: App::get('telegramToken')) . '/',
                     'timeout' => App::get('telegramLongPollingTimeout') + App::get('telegramTimeout'),
