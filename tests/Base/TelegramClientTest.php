@@ -15,7 +15,7 @@ class TelegramClientTest extends Unit
 {
     protected BaseTester $tester;
 
-    public function testSendMessage(): void
+    public function testGetUpdates(): void
     {
         $logHandler = new TestHandler();
         $logger = (new Logger('test'))->pushHandler($logHandler);
