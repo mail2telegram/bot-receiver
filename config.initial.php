@@ -7,6 +7,7 @@ use pahanini\Monolog\Formatter\CliFormatter;
 use Psr\Log\LoggerInterface;
 
 return [
+    'logLevel' => 'info', /** @see \Psr\Log\LogLevel */
     'workerMemoryLimit' => 134_217_728, // 128MB
     'workerInterval' => 1_000, // micro seconds
     'workerReconnectInterval' => 1_000_000, // micro seconds
@@ -18,7 +19,7 @@ return [
         LoggerInterface::class,
     ],
     LoggerInterface::class => static function () {
-        $stream = new StreamHandler(STDERR);
+        $stream = new StreamHandler(STDERR, App::get('logLevel'));
         $stream->setFormatter(new CliFormatter());
         return (new Logger('app'))->pushHandler($stream);
     },
