@@ -61,15 +61,32 @@ final class Worker
             usleep($this->interval);
             try {
                 $this->task();
-            } catch (RedisException $e) {
-                $this->logger->error((string) $e);
-                sleep(1);
-                $this->redis = App::get(Redis::class);
             } catch (Throwable $e) {
                 $this->logger->error((string) $e);
+                if (is_a($e, RedisException::class)) {
+                    $this->reconnectRedis();
+                }
             }
         }
         $this->logger->info('Worker finished');
+    }
+
+    private function reconnectRedis(): void
+    {
+        $config = App::get('redis');
+        usleep(($config['loopInterval'] ?? 1000) * 1000);
+        try {
+            $this->redis->pconnect(
+                $config['host'],
+                $config['port'] ?? 6379,
+                $config['timeout'] ?? 0.0,
+                $config['persistentId'] ?? null,
+                $config['retryInterval'] ?? 0,
+                $config['readTimeout'] ?? 0.0
+            );
+        }
+        catch (Throwable $e) {
+        }
     }
 
     /**

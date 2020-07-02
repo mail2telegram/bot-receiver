@@ -36,8 +36,18 @@ return [
         if (null === $connect) {
             $connect = new Redis();
         }
-        if (!$connect->isConnected() && !$connect->pconnect(App::get('redis')['host'])) {
-            throw new RuntimeException('No Redis connection');
+        if (!$connect->isConnected()) {
+            $config = App::get('redis');
+            if (!$connect->pconnect(
+                $config['host'],
+                $config['port'] ?? 6379,
+                $config['timeout'] ?? 0.0,
+                $config['persistentId'] ?? null,
+                $config['retryInterval'] ?? 0,
+                $config['readTimeout'] ?? 0.0
+            )) {
+                throw new RedisException('No Redis connection');
+            }
         }
         return $connect;
     },
