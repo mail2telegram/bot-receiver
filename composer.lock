@@ -211,16 +211,16 @@
         },
         {
             "name": "mail2telegram/common",
-            "version": "v1.0.9",
+            "version": "v1.1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mail2telegram/common.git",
-                "reference": "7c9510d3973d41f3b9bda1ad9acd8415cfa36c03"
+                "reference": "7de18390e6d50c93cb350d2dba8edef63bc97a38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mail2telegram/common/zipball/7c9510d3973d41f3b9bda1ad9acd8415cfa36c03",
-                "reference": "7c9510d3973d41f3b9bda1ad9acd8415cfa36c03",
+                "url": "https://api.github.com/repos/mail2telegram/common/zipball/7de18390e6d50c93cb350d2dba8edef63bc97a38",
+                "reference": "7de18390e6d50c93cb350d2dba8edef63bc97a38",
                 "shasum": ""
             },
             "require": {
@@ -286,10 +286,10 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/mail2telegram/common/tree/v1.0.9",
+                "source": "https://github.com/mail2telegram/common/tree/v1.1.0.1",
                 "issues": "https://github.com/mail2telegram/common/issues"
             },
-            "time": "2020-07-02T10:24:50+00:00"
+            "time": "2020-07-02T16:25:47+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2439,12 +2439,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "6d2e5ab854782830911ddd33b7d4649b9f18c10f"
+                "reference": "9ec84501a85a3b0c7b260042ae81a8efb2f234ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/6d2e5ab854782830911ddd33b7d4649b9f18c10f",
-                "reference": "6d2e5ab854782830911ddd33b7d4649b9f18c10f",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/9ec84501a85a3b0c7b260042ae81a8efb2f234ce",
+                "reference": "9ec84501a85a3b0c7b260042ae81a8efb2f234ce",
                 "shasum": ""
             },
             "conflict": {
@@ -2539,7 +2539,7 @@
                 "monolog/monolog": ">=1.8,<1.12",
                 "namshi/jose": "<2.2",
                 "nzo/url-encryptor-bundle": ">=4,<4.3.2|>=5,<5.0.1",
-                "october/october": ">=1.0.319,<1.0.466",
+                "october/october": ">=1.0.319,<1.0.467",
                 "onelogin/php-saml": "<2.10.4",
                 "oneup/uploader-bundle": "<1.9.3|>=2,<2.1.5",
                 "openid/php-openid": "<2.3",
@@ -2716,7 +2716,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-19T13:23:43+00:00"
+            "time": "2020-07-02T17:01:23+00:00"
         },
         {
             "name": "sabre/event",
