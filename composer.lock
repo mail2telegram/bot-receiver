@@ -1486,16 +1486,16 @@
         },
         {
             "name": "phan/phan",
-            "version": "3.0.4",
+            "version": "3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phan/phan.git",
-                "reference": "ba01d4a56fcb2019d79dc7ce63dc0151d1cc41f7"
+                "reference": "5caa68cc8024e537120d1fe9b835bc8525c660fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phan/phan/zipball/ba01d4a56fcb2019d79dc7ce63dc0151d1cc41f7",
-                "reference": "ba01d4a56fcb2019d79dc7ce63dc0151d1cc41f7",
+                "url": "https://api.github.com/repos/phan/phan/zipball/5caa68cc8024e537120d1fe9b835bc8525c660fa",
+                "reference": "5caa68cc8024e537120d1fe9b835bc8525c660fa",
                 "shasum": ""
             },
             "require": {
@@ -1555,7 +1555,7 @@
                 "php",
                 "static"
             ],
-            "time": "2020-07-01T18:04:58+00:00"
+            "time": "2020-07-03T23:01:25+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -2439,12 +2439,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "6d2e5ab854782830911ddd33b7d4649b9f18c10f"
+                "reference": "57353ec1a34527a2dbbd3c0fb9418ffc008c6f60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/6d2e5ab854782830911ddd33b7d4649b9f18c10f",
-                "reference": "6d2e5ab854782830911ddd33b7d4649b9f18c10f",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/57353ec1a34527a2dbbd3c0fb9418ffc008c6f60",
+                "reference": "57353ec1a34527a2dbbd3c0fb9418ffc008c6f60",
                 "shasum": ""
             },
             "conflict": {
@@ -2538,8 +2538,9 @@
                 "magento/product-community-edition": ">=2,<2.2.10|>=2.3,<2.3.2-p.2",
                 "monolog/monolog": ">=1.8,<1.12",
                 "namshi/jose": "<2.2",
+                "nystudio107/craft-seomatic": "<3.3",
                 "nzo/url-encryptor-bundle": ">=4,<4.3.2|>=5,<5.0.1",
-                "october/october": ">=1.0.319,<1.0.466",
+                "october/october": ">=1.0.319,<1.0.467",
                 "onelogin/php-saml": "<2.10.4",
                 "oneup/uploader-bundle": "<1.9.3|>=2,<2.1.5",
                 "openid/php-openid": "<2.3",
@@ -2716,7 +2717,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-19T13:23:43+00:00"
+            "time": "2020-07-03T16:50:03+00:00"
         },
         {
             "name": "sabre/event",
