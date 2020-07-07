@@ -139,7 +139,7 @@ final class Worker
 
         $updates = $this->telegram->getUpdates($offset);
         if (!$updates) {
-            $this->logger->debug('No updates');
+            //$this->logger->debug('No updates');
             return;
         }
         // Сохраним сразу, лучше ничего не отправим вообще, чем отправим повторно, если вдруг редис отвалится
