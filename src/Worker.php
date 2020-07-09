@@ -152,7 +152,7 @@ final class Worker
             $payload = json_encode($update, JSON_THROW_ON_ERROR);
 
             $routingKey = (string) (
-                $update['message']['from']['id']
+                $update['message']['chat']['id']
                 ?? (
                     $update['callback_query']['message']['chat']['id']
                     ?? 1
