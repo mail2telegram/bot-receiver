@@ -2,7 +2,7 @@
 
 return [
     'logLevel' => 'debug',
-    'telegramToken' => 'XXX',
+    'telegramToken' => getenv('TELEGRAM_TOKEN') ?: 'XXX',
     'redis' => [
         'host' => 'm2t_redis',
     ],
