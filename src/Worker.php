@@ -147,13 +147,17 @@ final class Worker
         $this->redis->set('telegramUpdatesOffset', end($updates)['update_id'] + 1);
 
         foreach ($updates as $update) {
-            // @todo Теоретически можно избежать десериализации,
+            // Теоретически можно избежать десериализации,
             // т.к. от Telegram мы получаем json в том же виде, как отправляем его дальше в очередь.
-            // Мы получаем несколько апдейтов, нужно либо получать по одному, либо резать на части.
             $payload = json_encode($update, JSON_THROW_ON_ERROR);
 
-            // @todo Обработка апдейтов другого типа (не message)
-            $routingKey = (string) ($update['message']['from']['id'] ?? 1);
+            $routingKey = (string) (
+                $update['message']['from']['id']
+                ?? (
+                    $update['callback_query']['message']['chat']['id']
+                    ?? 1
+                )
+            );
 
             $this->exchange->publish($payload, $routingKey, AMQP_MANDATORY);
             $offset = $update['update_id'] + 1;
