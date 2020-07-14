@@ -36,6 +36,7 @@ class TelegramClient
                     'offset' => $offset,
                     'limit' => $limit ?: App::get('telegramUpdatesLimit'),
                     'timeout' => App::get('telegramLongPollingTimeout'),
+                    'allowed_updates' => ['message', 'callback_query'],
                 ],
             ]
         );
