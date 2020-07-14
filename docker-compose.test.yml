@@ -5,4 +5,4 @@ services:
     entrypoint: []
     command: sh -c "cp config.example.php config.php && composer install --no-interaction --no-progress --no-suggest && composer cs:check && composer stan:md && composer stan:phan && composer test:base"
     environment:
-      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+      - TEST_TELEGRAM_TOKEN=${TEST_TELEGRAM_TOKEN}
