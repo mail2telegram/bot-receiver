@@ -52,6 +52,7 @@ return [
                     'port' => $config['port'],
                     'login' => $config['user'],
                     'password' => $config['pwd'],
+                    'heartbeat' => 60,
                 ]
             ));
         }
